@@ -19,11 +19,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      photo: {
+      sourceName: {
         type: Sequelize.STRING,
-        allowNull: true
       },
-      video: {
+      sourceTitle:{
+        type: Sequelize.STRING
+      },
+      category:{
+        type: Sequelize.STRING
+      },
+      photo: {
         type: Sequelize.STRING,
         allowNull: true
       },

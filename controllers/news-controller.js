@@ -25,17 +25,18 @@ const index = async(req, res) => {
 
 
 const publishArticle = async (req, res, next) => {
-  const { author, content, description, video } = req.body;
+  const { author, content, description, sourceName, sourceTitle, category } = req.body;
 
   console.log(req.file)
   const news = await News.create({
       newsId: id(),
-      author: author,
-      content: content,
-      description: description,
-      photo: req.file.path,
-      video: video
-  
+      author,
+      content,
+      description,
+      sourceName,
+      sourceTitle,
+      category,
+      photo: req.file.path
     })
   try {
     if (!news) {
@@ -87,14 +88,16 @@ const show = async (req, res, next) => {
 
 const update = async(req, res) => {
   const { id } = req.params
-  const { author, content, description, video } = req.body;
+  const { author, content, description, sourceName, sourceTitle, category } = req.body;
   const article = await News.findByPk(id);
   const updatedArticle = await News.update({
       author: author,
       content: content,
       description: description,
-      photo: req.file.path,
-      video: video
+      sourceName,
+      sourceTitle,
+      category,
+      photo: req.file.path
         },{ where: { newsId: id } })
 
 

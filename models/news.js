@@ -9,8 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     author: DataTypes.STRING,
     content: DataTypes.STRING,
     description: DataTypes.STRING,
-    photo: DataTypes.STRING,
-    video: DataTypes.STRING
+    sourceName: DataTypes.STRING,
+    sourceTitle: DataTypes.STRING,
+    category: DataTypes.STRING,
+    photo: DataTypes.STRING
   }, {});
   News.associate = function(models) {
     // associations can be defined here
