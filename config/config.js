@@ -1,12 +1,12 @@
 require('dotenv').config()
 module.exports = {
   "development": {
-    "username": "root",
-    "password": "",
+    "username": "postgres",
+    "password": "@#Geeeee",
     "database": "inews",
-    "port": 3306,
+    "port": 5432,
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "test": {
     username: process.env.PROD_DB_USERNAME,//qwUFNSgP8%)?
@@ -25,7 +25,7 @@ module.exports = {
     host: process.env.PROD_DB_HOSTNAME,
     port: process.env.PROD_DB_PORT,
     "dialect": "postgres",
-    "use_env_variable": process.env.DATABASE_URL,
+    "use_env_variable": 'DATABASE_URL',
     "ssl": true,
     "protocol": "postgres",
 
