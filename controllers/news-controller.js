@@ -1,14 +1,22 @@
 const id = require('shortid'); 
 const { News } = require('../models');
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI('a70a591ed2c445429c63241511f84ef5');
+const axios = require('axios')
 
-
+ const articles_url = 'https://newsapi.org/v2/top-headlines';
+ const country_code = 'ng';
+ const category = 'general';
+ const _api_key = 'a70a591ed2c445429c63241511f84ef5';
 
 const index = async(req, res) => {
+const article = await  newsapi.v2.topHeadlines({category: 'business',language: 'en',country: country_code})
+   
   try {
     const news = await News.findAll()
     if (news) {
       return await res.status(200).json({
-        articles: news
+        articles: article.concat(news) 
       })
     }
   }
@@ -24,10 +32,11 @@ const index = async(req, res) => {
 }
 
 
+
 const publishArticle = async (req, res, next) => {
   const { author, content, description, sourceName, sourceTitle, category } = req.body;
 
-  console.log(req.file)
+
   const news = await News.create({
       newsId: id(),
       author,
@@ -41,12 +50,12 @@ const publishArticle = async (req, res, next) => {
   try {
     if (!news) {
       return await res.status(400).json({
-        message: 'bad request',
+        msg: 'bad request',
         status: 400
       })
     } else {
       return await res.status(201).json({
-      message: 'success',
+      msg: 'success',
       status: 201
       })
     }
